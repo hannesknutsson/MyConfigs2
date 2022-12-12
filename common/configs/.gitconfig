@@ -3,6 +3,7 @@
 
 [user]
 	name = Hannes Knutsson
+	email = hannes.knutsson@protonmail.com
 
 [credential "https://github.com"]
 	username = hannesknutsson
