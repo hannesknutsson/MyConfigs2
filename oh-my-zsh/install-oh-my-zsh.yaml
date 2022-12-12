@@ -1,0 +1,33 @@
+---
+
+- name: Install CLI components
+  hosts: 127.0.0.1
+  connection: local
+  vars:
+    the_user: "{{ ansible_user_id }}"
+  tasks:
+
+    - name: Install zsh
+      become: true
+      ansible.builtin.package:
+        name: "zsh"
+        state: latest
+
+    - name: Install oh my zsh
+      git:
+        repo: https://github.com/ohmyzsh/ohmyzsh.git
+        dest: ~/.oh-my-zsh
+        depth: 1
+
+    - name: Install syntax highlighting plugin
+      git:
+        repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+        dest: ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+        depth: 1
+
+    - name: Change user default shell
+      become: true
+      user:
+        name: "{{ the_user }}"
+        shell: /bin/zsh
+
