@@ -17,7 +17,6 @@ plugins=(
     docker
     docker-compose
     zsh-syntax-highlighting
-    zsh-autosuggestions
     command-not-found
     gcloud
     git-auto-fetch
@@ -27,6 +26,7 @@ plugins=(
     pip
     kubectl
 )
+#    zsh-autosuggestions Used to be in the list above, but I removed it for now
 
 source $ZSH/oh-my-zsh.sh
 
@@ -37,5 +37,8 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 setopt HIST_IGNORE_SPACE
 
-source <(~/.local/bin/kubectl completion zsh)
-complete -F __start_kubectl k
+# set PATH so it includes snap bin if it exists
+if [ -f "~/.local/bin/kubectl" ] ; then
+    source <(~/.local/bin/kubectl completion zsh)
+    complete -F __start_kubectl k
+fi
