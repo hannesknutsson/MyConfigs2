@@ -1,0 +1,8 @@
+#Global Git ignore file for commonly ignored files
+
+#IntelliJ stuff
+.idea
+*.iml
+
+#Maven build directories
+**/target/*

@@ -1,0 +1,17 @@
+#Generic rc file for stuff I might want in both the bashrc and the zshrc files.
+
+#Inglude global aliases
+. ~/.aliases
+
+# Include any local aliases if present
+if [ -f ~/.aliases_local ]; then
+	. ~/.aliases_local
+fi
+
+#Show some dank stats
+if command -v neofetch &> /dev/null
+then
+	neofetch
+fi
+
+source ~/.generic_profile

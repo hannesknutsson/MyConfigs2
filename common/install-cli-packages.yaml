@@ -14,7 +14,7 @@
 
     - name: Install packages
       ignore_errors: true
-      loop: "{{ lookup('file', 'packages.txt').splitlines() }}"
+      loop: "{{ lookup('file', 'lists/packages.txt').splitlines() }}"
       become: true
       ansible.builtin.package:
         name: "{{item}}"

@@ -1,0 +1,25 @@
+---
+
+- name: Install CLI components
+  hosts: 127.0.0.1
+  connection: local
+  become: false
+  tasks:
+
+  - name: Create directories
+    file:
+      path: "{{ lookup('ansible.builtin.env', 'HOME') }}/{{ item.path }}"
+      state: directory
+      mode: '{{ item.mode }}'
+    with_filetree: configs/
+    when: item.state == 'directory'
+
+  - name: Create symlinks
+    file:
+      src: "{{ item.src }}"
+      dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/{{ item.path }}"
+      state: link
+      force: yes
+      mode: "{{ item.mode }}"
+    with_filetree: "configs/"
+    when: item.state == "file"

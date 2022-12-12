@@ -1,0 +1,28 @@
+[include]
+	path = ~/.gitconfig_local
+
+[user]
+	name = Hannes Knutsson
+
+[credential "https://github.com"]
+	username = hannesknutsson
+
+[core]
+	editor = vim
+	excludesfile = ~/.gitignore_global
+
+[status]
+	showUntrackedFiles = all
+
+[diff]
+	renames = copies
+
+[tag]
+	sort = version:refname
+
+[color]
+	ui = auto
+
+[push]
+	default = simple
+
