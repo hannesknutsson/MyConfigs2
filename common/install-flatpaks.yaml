@@ -1,0 +1,22 @@
+---
+
+- name: Install flatpaks
+  hosts: 127.0.0.1
+  connection: local
+  tasks:
+
+
+    - name: Install flatpak
+      become: true
+      ansible.builtin.package:
+        name: "flatpak"
+        state: latest
+
+    - name: Install packages
+      loop: "{{ lookup('file', 'lists/flatpaks.txt').splitlines() }}"
+      community.general.flatpak:
+        name: "{{ item }}"
+        state: present
+        method: user
+
+

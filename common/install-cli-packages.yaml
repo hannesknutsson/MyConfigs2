@@ -13,8 +13,8 @@
         state: latest
 
     - name: Install packages
-      ignore_errors: true
       loop: "{{ lookup('file', 'lists/packages.txt').splitlines() }}"
+      ignore_errors: true
       become: true
       ansible.builtin.package:
         name: "{{item}}"
