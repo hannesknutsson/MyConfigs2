@@ -1,7 +1,7 @@
 " Visuals
 set number
-set cursorline
-set cursorcolumn
+#set cursorline
+#set cursorcolumn
 " set wrap
 highlight cursorline cterm=bold ctermbg=darkgrey
 highlight cursorcolumn ctermbg=darkgrey
@@ -42,4 +42,4 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 highlight SignColumn ctermbg=NONE
 
 "   Center current line
-set scrolloff=999
+set scrolloff=10

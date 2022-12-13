@@ -5,12 +5,18 @@
   connection: local
   tasks:
 
-
     - name: Install flatpak
       become: true
       ansible.builtin.package:
         name: "flatpak"
         state: latest
+
+    - name: Add the flathub flatpak repository remote
+      community.general.flatpak_remote:
+        name: flathub
+        state: present
+        flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+        method: user
 
     - name: Install packages
       loop: "{{ lookup('file', 'flatpaks.txt').splitlines() }}"
