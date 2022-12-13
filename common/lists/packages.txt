@@ -15,8 +15,6 @@ python3
 psmisc
 pcscd
 libavcodec-extra
-zsh-syntax-highlighting
-zsh-autosuggestions
 nodejs
 npm
 bat
