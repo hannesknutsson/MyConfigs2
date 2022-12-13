@@ -13,7 +13,7 @@
         state: latest
 
     - name: Install packages
-      loop: "{{ lookup('file', 'lists/flatpaks.txt').splitlines() }}"
+      loop: "{{ lookup('file', 'flatpaks.txt').splitlines() }}"
       community.general.flatpak:
         name: "{{ item }}"
         state: present
