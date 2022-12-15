@@ -4,7 +4,6 @@ com.github.tchx84.Flatseal
 com.mattermost.Desktop
 com.spotify.Client
 com.sublimetext.three
-com.visualstudio.code
 com.yubico.yubioath
 io.dbeaver.DBeaverCommunity
 one.flipperzero.qFlipper
