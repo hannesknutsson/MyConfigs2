@@ -8,5 +8,6 @@ com.visualstudio.code
 com.yubico.yubioath
 io.dbeaver.DBeaverCommunity
 one.flipperzero.qFlipper
+org.libreoffice.LibreOffice
 org.raspberrypi.rpi-imager
 org.signal.Signal
