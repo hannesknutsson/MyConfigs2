@@ -1,9 +1,9 @@
 com.bitwarden.desktop
 com.discordapp.Discord
 com.github.tchx84.Flatseal
+com.mojang.Minecraft
 com.spotify.Client
 com.sublimetext.three
-com.visualstudio.code
 com.yubico.yubioath
 io.dbeaver.DBeaverCommunity
 one.flipperzero.qFlipper
