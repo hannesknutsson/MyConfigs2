@@ -18,3 +18,4 @@ libavcodec-extra
 nodejs
 npm
 bat
+speedtest-cli
