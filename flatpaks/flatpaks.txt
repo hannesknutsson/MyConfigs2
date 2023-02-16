@@ -1,6 +1,7 @@
 com.bitwarden.desktop
 com.discordapp.Discord
 com.github.tchx84.Flatseal
+com.mojang.Minecraft
 com.mattermost.Desktop
 com.spotify.Client
 com.sublimetext.three

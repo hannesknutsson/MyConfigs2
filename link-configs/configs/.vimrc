@@ -1,7 +1,7 @@
 " Visuals
 set number
-#set cursorline
-#set cursorcolumn
+" set cursorline
+" set cursorcolumn
 " set wrap
 highlight cursorline cterm=bold ctermbg=darkgrey
 highlight cursorcolumn ctermbg=darkgrey
@@ -19,6 +19,12 @@ set shiftwidth=4
 set expandtab
 
 " PLUGINS
+
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 call plug#begin('~/.vim/plugged')
 Plug 'airblade/vim-gitgutter'           " Add Git diff characters in the left gutter
