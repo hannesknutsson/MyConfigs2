@@ -11,6 +11,7 @@ alias shred='shred -n 100 -z -v'
 # docker
 alias down='docker-compose down'
 alias up='docker-compose up -d'
+alias dclean='docker ps -a | grep xited | cut -d " " -f 1 | xargs docker rm'
 
 # k8s
 alias k='kubectl'
