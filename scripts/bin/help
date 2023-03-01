@@ -1,0 +1,19 @@
+#!/bin/bash
+
+SCRIPTPATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+
+if [[ "$#" != 1 ]]
+then
+    echo "You seem to have entered more arguments than I am able to help you with."
+    exit 1337
+fi
+
+HELPDIR=$(dirname $SCRIPTPATH)/libhelp
+
+if [ -f "$HELPDIR/$1" ]
+then
+    cat "$HELPDIR/$1"
+else
+    echo "How $1 works will forever remain a mystery :("
+fi
+

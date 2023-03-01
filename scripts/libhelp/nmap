@@ -1,0 +1,2 @@
+Scan ALL ports:
+    nmap -p-

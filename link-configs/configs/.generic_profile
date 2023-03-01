@@ -4,7 +4,7 @@
 if [ -d "$HOME/bin" ] ; then
     PATH="$HOME/bin:$PATH"
 fi
- 
+
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
     PATH="$HOME/.local/bin:$PATH"
@@ -13,6 +13,11 @@ fi
 # set PATH so it includes snap bin if it exists
 if [ -d "/snap/bin" ] ; then
     PATH="/snap/bin:$PATH"
+fi
+
+# set PATH so it personal script bin if it exists
+if [ -d "$HOME/MyConfigs2/scripts/bin" ] ; then
+    PATH="$HOME/MyConfigs2/scripts/bin:$PATH"
 fi
 
 USE_GKE_GCLOUD_AUTH_PLUGIN=True
