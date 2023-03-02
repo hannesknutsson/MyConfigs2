@@ -1,0 +1,34 @@
+#!/bin/bash
+
+# Parse arguments
+if [[ "$#" == 2 ]]
+then
+    if [[ $# == 2 && ($1 == "file" || $1 == "f" || $1 == "directory" || $1 == "dir" || $1 == "d") ]]
+    then
+        # Get first char in string
+        TYPE=${1:0:1}
+        SEARCH_TERM=$2
+    else
+        echo Incorrect search type!
+        exit 1337
+    fi
+elif [[ $# == 1 ]]
+then
+    SEARCH_TERM=$1
+else
+    echo Too many arguments!
+    exit 1337
+fi
+
+# Build find arguments
+ARGS=('.' '-name' $SEARCH_TERM)
+
+if [ ! -z ${TYPE+x} ]
+then
+    # Type is set
+    ARGS+=('-type' $TYPE)
+fi
+
+>&2 echo find ${ARGS[@]}
+find ${ARGS[@]}
+
