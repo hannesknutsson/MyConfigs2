@@ -1,0 +1,7 @@
+#!/bin/bash
+
+FIND=$1
+REPLACE=$2
+
+grep -rl "$FIND" . | xargs sed -i "s|$FIND|$REPLACE|g"
+

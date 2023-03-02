@@ -15,6 +15,7 @@ if [ -d "/snap/bin" ] ; then
     PATH="/snap/bin:$PATH"
 fi
 
+
 # set PATH so it personal script bin if it exists
 if [ -d "$HOME/MyConfigs2/scripts/bin" ] ; then
     PATH="$HOME/MyConfigs2/scripts/bin:$PATH"
