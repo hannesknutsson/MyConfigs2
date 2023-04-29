@@ -8,6 +8,12 @@ alias l='ls -CF'
 # shred
 alias shred='shred -n 100 -z -v'
 
+# weather
+alias weather='curl wttr.in'
+
+# external ip
+alias myip='curl ip.me'
+
 # docker
 alias down='docker-compose down'
 alias up='docker-compose up -d'
