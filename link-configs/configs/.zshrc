@@ -20,12 +20,10 @@ plugins=(
     command-not-found
     gcloud
     git-auto-fetch
-    helm
-    minikube
-    npm
     pip
-    kubectl
+    kube-ps1
 )
+#    kubectl
 #    zsh-autosuggestions Used to be in the list above, but I removed it for now
 
 source $ZSH/oh-my-zsh.sh
@@ -37,8 +35,8 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR='vim'
 setopt HIST_IGNORE_SPACE
 
-# set PATH so it includes snap bin if it exists
-if [ -f "~/.local/bin/kubectl" ] ; then
-    source <(~/.local/bin/kubectl completion zsh)
-    complete -F __start_kubectl k
-fi
+# get zsh complete kubectl
+source <(kubectl completion zsh)
+alias kubectl=kubecolor
+# make completion work with kubecolor
+compdef kubecolor=kubectl

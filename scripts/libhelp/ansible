@@ -1,0 +1,19 @@
+Inventory file is at /etc/ansible/hosts and looks like this:
+
+all:
+  hosts:
+    mail.example.com:
+  children:
+    webservers:
+      hosts:
+        foo.example.com:
+        bar.example.com:
+    dbservers:
+      hosts:
+        one.example.com:
+        two.example.com:
+        three.example.com:
+
+Run an ad hoc command:
+
+ansible dbservers -m shell -a "ip -4 -o addr show wlan0 | awk '{print \$4}' | cut -d '/' -f 1"
