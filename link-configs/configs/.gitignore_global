@@ -3,6 +3,10 @@
 #IntelliJ stuff
 .idea
 *.iml
+.run
 
 #Maven build directories
 **/target/*
+
+#Environment files which might contain secret stuff
+**/.env
