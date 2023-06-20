@@ -1,0 +1,66 @@
+#!/bin/bash
+
+OWM_KEY=$1
+
+if [[ $OWM_KEY == "" ]]
+then
+    echo "You forgot adding the OpenWeatherMap API key as an argument"
+    exit 1
+fi
+
+function map_weather_code_to_emoji() {
+    local code=$1
+
+    case $code in
+        "01d") echo "☀️" ;;        # Sunny
+        "01n") echo "🌙" ;;       # Clear Night
+        "02d") echo "⛅️" ;;       # Partly Cloudy Day
+        "02n") echo "☁️" ;;        # Partly Cloudy Night
+        "03d") echo "🌤️" ;;        # Scattered Clouds Day
+        "03n") echo "🌤️" ;;        # Scattered Clouds Night
+        "04d") echo "☁️" ;;        # Cloudy Day
+        "04n") echo "☁️" ;;        # Cloudy Night
+        "09d") echo "🌧️" ;;        # Rainy Day
+        "09n") echo "🌧️" ;;        # Rainy Night
+        "10d") echo "🌦️" ;;        # Rainy Day
+        "10n") echo "🌦️" ;;        # Rainy Night
+        "11d") echo "⛈️" ;;        # Thunderstorm Day
+        "11n") echo "⛈️" ;;        # Thunderstorm Night
+        "13d") echo "❄️" ;;        # Snowy Day
+        "13n") echo "❄️" ;;        # Snowy Night
+        "50d") echo "🌫️" ;;        # Misty Day
+        "50n") echo "🌫️" ;;        # Misty Night
+        *) echo "❓" ;;           # Unknown or unsupported code
+    esac
+}
+
+CITY=$(curl -s http://ip-api.com/json | jq -r .city)
+LOCATION=$(curl -s -X GET "https://api.openweathermap.org/geo/1.0/direct?q=$CITY&limit=1&appid=$OWM_KEY" | jq '{ lat: .[0].lat, lon: .[0].lon, city: .[0].local_names.sv }')
+
+LAT=$(echo $LOCATION | jq -r .lat)
+LON=$(echo $LOCATION | jq -r .lon)
+CITY_PRETTY=$(echo $LOCATION | jq -r .city)
+
+OWM_RESP=$(curl -s -X GET -H "Cache-Control: no-cache" "https://api.openweathermap.org/data/2.5/weather?lon=$LON&lat=$LAT&APPID=$OWM_KEY&units=metric")
+
+WEATHER=$(echo $OWM_RESP | jq -r '.weather[0].main')
+TEMP=$(echo $OWM_RESP | jq -r '.main.temp | .*10 | round / 10 | tostring')
+FEELS=$(echo $OWM_RESP | jq -r '.main.feels_like | .*10 | round / 10 | tostring')
+WEATHER_CODE=$(echo $OWM_RESP | jq -r '.weather[0].icon')
+EMOJI=$(map_weather_code_to_emoji "$WEATHER_CODE")
+
+DIFF=$(echo "$TEMP - $FEELS" | bc)
+ABS_DIFF=$(echo "if ($DIFF < 0) -($DIFF) else $DIFF" | bc)
+
+echo -n -e "$CITY_PRETTY  $EMOJI  $(printf "%.1f" "$TEMP")\u00B0"
+
+# Only print "feels like" if relevant
+if (( $(echo "$ABS_DIFF > 1" | bc -l) )); then
+    echo -e " Feels like $(printf "%.1f" "$FEELS")\u00B0"
+else
+    echo ""
+fi
+
+
+# echo $OWM_RESP | jq
+

@@ -8,10 +8,6 @@ alias l='ls -CF'
 # shred
 alias shred='shred -n 100 -z -v'
 
-# weather
-alias weather='curl -s wttr.in/\?FMn1'
-alias weather-long='curl -s wttr.in/\?FM'
-
 # docker
 alias down='docker compose down'
 alias up='docker compose up'
@@ -34,7 +30,7 @@ alias network-speed="speedtest-cli"
 alias netspeed="speedtest-cli"
 
 # external ip
-alias myip='curl ip.me'
+alias myip='curl -s 'http://ip-api.com/json' | jq .'
 
 # help script tool thingy
 alias how="help"
