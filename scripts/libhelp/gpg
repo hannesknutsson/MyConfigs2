@@ -5,5 +5,8 @@ tar -cvzf - /path/to/dir1 /path/to/dir2 | gpg --symmetric --cipher-algo AES256 -
 Dekryptera filen till en göttig tar:
 gpg --decrypt archive.tar.gz.gpg > decrypted_file.tar.gz
 
+Dekryptera och ta fram alla filerna ur tar
+gpg --decrypt ../hankes-home-archive.tar.gz.gpg | tar -xzvf -
+
 Se även how tar för göttiga flaggor
 
