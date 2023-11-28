@@ -43,7 +43,7 @@ CITY_PRETTY=$(echo $LOCATION | jq -r .city)
 
 OWM_RESP=$(curl -s -X GET -H "Cache-Control: no-cache" "https://api.openweathermap.org/data/2.5/weather?lon=$LON&lat=$LAT&APPID=$OWM_KEY&units=metric")
 
-WEATHER=$(echo $OWM_RESP | jq -r '.weather[0].main')
+WEATHER=$(echo $OWM_RESP | jq -r '.weather[0].main | ascii_downcase')
 TEMP=$(echo $OWM_RESP | jq -r '.main.temp | .*10 | round / 10 | tostring')
 FEELS=$(echo $OWM_RESP | jq -r '.main.feels_like | .*10 | round / 10 | tostring')
 WEATHER_CODE=$(echo $OWM_RESP | jq -r '.weather[0].icon')
@@ -52,11 +52,11 @@ EMOJI=$(map_weather_code_to_emoji "$WEATHER_CODE")
 DIFF=$(echo "$TEMP - $FEELS" | bc)
 ABS_DIFF=$(echo "if ($DIFF < 0) -($DIFF) else $DIFF" | bc)
 
-echo -n -e "$CITY_PRETTY  $EMOJI  $(printf "%.1f" "$TEMP")\u00B0"
+echo -n -e "It is $(printf "%.1f" "$TEMP")\u00B0c with $WEATHER"
 
 # Only print "feels like" if relevant
 if (( $(echo "$ABS_DIFF > 1" | bc -l) )); then
-    echo -e " Feels like $(printf "%.1f" "$FEELS")\u00B0"
+    echo -e " but it feels like $(printf "%.1f" "$FEELS")\u00B0c which is pretty wack"
 else
     echo ""
 fi

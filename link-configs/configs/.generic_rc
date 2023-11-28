@@ -8,24 +8,8 @@ if [ -f ~/.aliases_local ]; then
 	. ~/.aliases_local
 fi
 
-# Include any local aliases if present
-if [ -f ~/.sdkman/bin/sdkman-init.sh ]; then
-    source "$HOME/.sdkman/bin/sdkman-init.sh"
-fi
-
-##Show some dank stats
-#if command -v neofetch &> /dev/null
-#then
-#	neofetch
-#fi
-
 # SDKMAN setup shite
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 source ~/.generic_profile
-
-echo ""
-weather | sed 's/^/   /'
-echo ""
-

@@ -1,0 +1,9 @@
+
+Kryptera en massa kataloger (kommer fråga om password):
+tar -cvzf - /path/to/dir1 /path/to/dir2 | gpg --symmetric --cipher-algo AES256 --output archive.tar.gz.gpg
+
+Dekryptera filen till en göttig tar:
+gpg --decrypt archive.tar.gz.gpg > decrypted_file.tar.gz
+
+Se även how tar för göttiga flaggor
+
