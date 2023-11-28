@@ -1,13 +1,8 @@
 com.bitwarden.desktop
 com.discordapp.Discord
 com.github.tchx84.Flatseal
-com.mojang.Minecraft
-com.mattermost.Desktop
-com.spotify.Client
-com.sublimetext.three
 com.yubico.yubioath
 io.dbeaver.DBeaverCommunity
-one.flipperzero.qFlipper
 org.libreoffice.LibreOffice
 org.raspberrypi.rpi-imager
 org.signal.Signal

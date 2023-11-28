@@ -16,8 +16,6 @@ python3
 psmisc
 pcscd
 libavcodec-extra
-nodejs
-npm
 bat
 speedtest-cli
 kubecolor
