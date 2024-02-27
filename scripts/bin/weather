@@ -34,12 +34,11 @@ function map_weather_code_to_emoji() {
     esac
 }
 
-CITY=$(curl -s http://ip-api.com/json | jq -r .city)
-LOCATION=$(curl -s -X GET "https://api.openweathermap.org/geo/1.0/direct?q=$CITY&limit=1&appid=$OWM_KEY" | jq '{ lat: .[0].lat, lon: .[0].lon, city: .[0].local_names.sv }')
+IP_RESPONSE=$(curl -s http://ip-api.com/json)
 
-LAT=$(echo $LOCATION | jq -r .lat)
-LON=$(echo $LOCATION | jq -r .lon)
-CITY_PRETTY=$(echo $LOCATION | jq -r .city)
+CITY=$(echo $IP_RESPONSE | jq -r .city)
+LAT=$(echo $IP_RESPONSE | jq -r .lat)
+LON=$(echo $IP_RESPONSE | jq -r .lon)
 
 OWM_RESP=$(curl -s -X GET -H "Cache-Control: no-cache" "https://api.openweathermap.org/data/2.5/weather?lon=$LON&lat=$LAT&APPID=$OWM_KEY&units=metric")
 
@@ -52,15 +51,14 @@ EMOJI=$(map_weather_code_to_emoji "$WEATHER_CODE")
 DIFF=$(echo "$TEMP - $FEELS" | bc)
 ABS_DIFF=$(echo "if ($DIFF < 0) -($DIFF) else $DIFF" | bc)
 
-echo -n -e "It is $(printf "%.1f" "$TEMP")\u00B0c with $WEATHER"
+echo -n -e "It is $TEMP\u00B0c with $WEATHER"
 
 # Only print "feels like" if relevant
 if (( $(echo "$ABS_DIFF > 1" | bc -l) )); then
-    echo -e " but it feels like $(printf "%.1f" "$FEELS")\u00B0c which is pretty wack"
+    echo -n -e " but it feels like $FEELS\u00B0c which is pretty wack "
 else
-    echo ""
+    echo -n -e " "
 fi
 
-
-# echo $OWM_RESP | jq
+echo -e $EMOJI
 
