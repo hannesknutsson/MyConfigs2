@@ -1,0 +1,5 @@
+Undo commit (ONLY USE FOR UNPUSHED CHANGES):
+  git reset HEAD~1
+
+Unstage single file (revert git add):
+  git reset HEAD -- <file>

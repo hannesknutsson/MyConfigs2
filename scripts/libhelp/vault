@@ -1,0 +1,2 @@
+Synca alla secrets:
+    kubectl exec -n operators -it $(kubectl get pod -l "app=vault-injector" -n operators -o jsonpath="{.items[0].metadata.name}") -- /vault-injector.py

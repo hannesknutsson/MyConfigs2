@@ -1,0 +1,5 @@
+Force Flux to check Git and sync state to cluster (will not restart pods for env var changes):
+
+    flux reconcile source git flux-system -n flux-system
+
+

@@ -1,0 +1,2 @@
+Epoch time in secs:
+    date +%s 
