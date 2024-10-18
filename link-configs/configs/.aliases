@@ -20,6 +20,7 @@ alias docker-compose='docker compose'
 # k8s
 alias k='kubecolor'
 alias pods='kubecolor get pod -o=custom-columns=NODE:.spec.nodeName,NAME:.metadata.name --all-namespaces | tail -n +2 | sort'
+alias kctx='kubectl config set current-context'
 
 # docker stuff
 
@@ -40,4 +41,13 @@ alias stupid="help"
 alias trashware="help"
 
 alias cat=batcat
+alias dev="git checkout development"
+alias mas="git checkout master"
+alias reset="git reset --hard"
+
+alias d="trash"
+
+# small help stuff
+alias ssn="curl -s https://skatteverket.entryscape.net/store/9/resource/1941 | tail -n +2 | shuf -n 1"
+alias get-ssn="curl -s https://skatteverket.entryscape.net/store/9/resource/1941 | tail -n +2 | shuf -n 1"
 

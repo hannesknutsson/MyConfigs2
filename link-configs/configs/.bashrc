@@ -138,3 +138,7 @@ if ! shopt -oq posix; then
   fi
 fi
 PATH="$HOME/.local/bin:$PATH"
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/hanke/.sdkman"
+[[ -s "/home/hanke/.sdkman/bin/sdkman-init.sh" ]] && source "/home/hanke/.sdkman/bin/sdkman-init.sh"

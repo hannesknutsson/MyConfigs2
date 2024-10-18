@@ -18,5 +18,10 @@ pcscd
 libavcodec-extra
 bat
 speedtest-cli
+playerctl
+jq
 kubecolor
 kubectl
+trash-cli
+units
+uuid

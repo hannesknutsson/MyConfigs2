@@ -8,8 +8,4 @@ if [ -f ~/.aliases_local ]; then
 	. ~/.aliases_local
 fi
 
-# SDKMAN setup shite
-export SDKMAN_DIR="$HOME/.sdkman"
-[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
-
 source ~/.generic_profile

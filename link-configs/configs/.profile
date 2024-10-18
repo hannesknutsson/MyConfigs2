@@ -16,3 +16,5 @@ fi
 if [ -f "$HOME/.generic_profile" ] ; then
     . "$HOME/.generic_profile"
 fi
+
+VAULT_ADDR=https://vault.wayatech.se
